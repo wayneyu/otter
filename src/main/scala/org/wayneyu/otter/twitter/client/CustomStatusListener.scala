@@ -1,4 +1,4 @@
-package org.wayneyu.otter.client
+package org.wayneyu.otter.twitter.client
 
 import twitter4j.{StallWarning, Status, StatusDeletionNotice, StatusListener}
 

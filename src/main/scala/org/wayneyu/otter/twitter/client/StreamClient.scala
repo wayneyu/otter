@@ -1,4 +1,4 @@
-package org.wayneyu.otter.client
+package org.wayneyu.otter.twitter.client
 
 import twitter4j.conf.Configuration
 import twitter4j.{FilterQuery, TwitterStreamFactory, StatusListener}
@@ -20,4 +20,8 @@ class StreamClient(config: Configuration, statusListener: StatusListener) {
     stream.cleanUp()
     stream.shutdown()
   }
+}
+
+object StreamClient {
+  def apply(config: Configuration, statusListener: StatusListener) = new StreamClient(config, statusListener)
 }

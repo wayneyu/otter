@@ -9,6 +9,8 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
 
 libraryDependencies += "org.twitter4j" % "twitter4j-stream" % "4.0.4"
 
+libraryDependencies += "org.apache.kafka" % "kafka-clients" % "0.10.0.0"
+
 // Uncomment to use Akka
 //libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.11"
 

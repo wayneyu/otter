@@ -1,4 +1,4 @@
-package org.wayneyu.otter.client
+package org.wayneyu.otter.twitter.client
 
 /**
   * Created by wayneyu on 5/24/16.
