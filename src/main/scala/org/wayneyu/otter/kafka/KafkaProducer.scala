@@ -19,13 +19,11 @@ class KafkaProducer(val props: Properties, val topic: String) {
 }
 
 object KafkaProducer {
-  val defaultTopic = "TwitterStream"
   val defaultProps = new Properties()
-  defaultProps.put("bootstrap.servers", "kafka0:9092,kafka1:9092")
-  defaultProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-  defaultProps.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
+  defaultProps.load(getClass.getClassLoader.getResourceAsStream("kafka.properties"))
+  val defaultTopic = defaultProps.getProperty("topic")
 
-  def apply(props: Properties, topic: String) = new KafkaProducer(props, topic)
-  def apply(props: Properties) = new KafkaProducer(props, defaultTopic)
-  def apply() = new KafkaProducer(defaultProps, defaultTopic)
+  def apply(props: Properties, topic: String) : KafkaProducer = new KafkaProducer(props, topic)
+  def apply(props: Properties) : KafkaProducer = this(props, defaultTopic)
+  def apply() : KafkaProducer = this(defaultProps, defaultTopic)
 }

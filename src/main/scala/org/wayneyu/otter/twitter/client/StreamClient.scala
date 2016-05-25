@@ -12,16 +12,18 @@ class StreamClient(config: Configuration, statusListener: StatusListener) {
   twitterStream.addListener(statusListener)
 
   def stream = twitterStream
+}
+
+object StreamClient {
+  def apply(config: Configuration, statusListener: StatusListener) = new StreamClient(config, statusListener)
+  def apply(statusListener: StatusListener) : StreamClient = this(AppConfig.config, statusListener)
+  def apply() : StreamClient = this(AppConfig.config, DefaultStatusListener)
 
   def main(args: Array[String]) {
-    val stream = new StreamClient(AppConfig.config, new CustomStatusListener).stream
+    val stream = StreamClient().stream
     stream.filter(new FilterQuery().language("en").track(args(0)))
     Thread.sleep(10000)
     stream.cleanUp()
     stream.shutdown()
   }
-}
-
-object StreamClient {
-  def apply(config: Configuration, statusListener: StatusListener) = new StreamClient(config, statusListener)
 }

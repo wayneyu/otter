@@ -9,22 +9,19 @@ import org.scalatest.{BeforeAndAfter, FlatSpec, Matchers}
   */
 class KafkaProducerSpec extends FlatSpec with Matchers with BeforeAndAfter{
 
-  val TEST_TOPIC = "TwitterTest"
   val defaultProps = new Properties()
-  defaultProps.put("bootstrap.servers", "kafka0:9092")
-  defaultProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-  defaultProps.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer")
-  defaultProps.put("request.required.acks", "1")
+  defaultProps.load(getClass.getClassLoader.getResourceAsStream("kafka.properties"))
 
   behavior of "Kafka producer"
 
   it should "use TwitterStream when no topic is supplied" in {
     val client = KafkaProducer(defaultProps)
-    client.topic should be ("TwitterStream")
+    client.topic should be (defaultProps.getProperty("topic"))
   }
 
   it should "send message to TwitterTest topic" in {
-    val client = KafkaProducer(defaultProps, TEST_TOPIC)
+    val client = KafkaProducer(defaultProps)
     client.send("test sending tweet").get()
   }
+
 }
