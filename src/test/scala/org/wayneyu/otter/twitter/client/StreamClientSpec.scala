@@ -5,9 +5,11 @@ import org.scalatest._
 /**
   * Created by wayneyu on 5/23/16.
   */
-class StreamClientTest extends FlatSpec with Matchers {
+class StreamClientSpec extends FlatSpec with Matchers {
 
-  "A stream client" should "return use correct config" in {
+  behavior of "Stream client"
+
+  it should "use config passed in to the constructor" in {
     val config = AppConfig.config
     val listener = new CustomStatusListener
     val streamer = new StreamClient(config, listener).stream

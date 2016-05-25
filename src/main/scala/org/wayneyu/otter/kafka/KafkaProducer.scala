@@ -19,7 +19,7 @@ class KafkaProducer(val props: Properties, val topic: String) {
 }
 
 object KafkaProducer {
-  val defaultTopic = "TwitterTest"
+  val defaultTopic = "TwitterStream"
   val defaultProps = new Properties()
   defaultProps.put("bootstrap.servers", "kafka0:9092,kafka1:9092")
   defaultProps.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer")
