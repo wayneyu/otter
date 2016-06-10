@@ -6,7 +6,7 @@ import java.util.Properties
   * Created by wayneyu on 5/24/16.
   */
 
-object AppConfig {
+object TwitterAppConfig {
 
   val props = new Properties()
   props.load(getClass.getClassLoader.getResourceAsStream("prod.env"))

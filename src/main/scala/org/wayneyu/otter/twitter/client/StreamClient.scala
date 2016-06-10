@@ -16,8 +16,8 @@ class StreamClient(config: Configuration, statusListener: StatusListener) {
 
 object StreamClient {
   def apply(config: Configuration, statusListener: StatusListener) = new StreamClient(config, statusListener)
-  def apply(statusListener: StatusListener) : StreamClient = this(AppConfig.config, statusListener)
-  def apply() : StreamClient = this(AppConfig.config, DefaultStatusListener)
+  def apply(statusListener: StatusListener) : StreamClient = this(TwitterAppConfig.config, statusListener)
+  def apply() : StreamClient = this(TwitterAppConfig.config, DefaultStatusListener)
 
   def main(args: Array[String]) {
     val stream = StreamClient().stream

@@ -23,7 +23,7 @@ class StreamClientSpec extends FlatSpec with Matchers {
   behavior of "Stream client"
 
   it should "use config passed in to the constructor" in {
-    val config = AppConfig.config
+    val config = TwitterAppConfig.config
     val listener = DefaultStatusListener
     val stream = StreamClient(config, listener).stream
     stream.getConfiguration should be (config)
